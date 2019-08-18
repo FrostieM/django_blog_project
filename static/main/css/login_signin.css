@@ -1,0 +1,27 @@
+@import "../../general/css/fonts.css";
+
+*{
+    font-family: 'MyriadPro bold';
+}
+
+div[class|='container']{
+    height: 500px;
+}
+
+input{
+    color: #17A2B8;
+}
+
+a, a:hover, .logo span{
+    color: #d66cb7;
+}
+
+.logo figcaption{
+    color: #7e7d7e;
+}
+
+@media screen and (max-width: 600px){
+    div[class|='container']{
+        height: auto;
+    }
+}
