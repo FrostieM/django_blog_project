@@ -2,5 +2,14 @@
 
 {% block head %}
     <h1>You did it! {{ username }}</h1>
-    <h2>Blog's user is {{ blog. }}</h2>
+    <h2>Blog's user is {{ blog.user.username }}</h2>
+    <h3>
+        {% if creator %}
+            Hello, creator!
+        {% else %}
+            You're not my creator!
+        {% endif %}
+    </h3>
+
+    <a href="{% url 'user_logout' %}">Exit :(</a>
 {% endblock %}

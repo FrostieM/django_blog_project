@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -17,13 +17,19 @@ def template_redirect(request):
 
 def did_it(request, username):
     # TODO get_or_404page do next time
-    user = User.objects.get(username=username)
-    blog = Blog.objects.get_or_create(user=user)
+    user = get_object_or_404(User, username=username)
+    get, created = Blog.objects.get_or_create(user=user)
 
-    logout(request)
+    blog = get or created
+
     return render(request, 'user/did_it.html', {
         'username': username,
         'blog': blog,
-        'creator': user == request.user,
+        'creator': request.user.username == username,
     })
+
+
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('login'))
 
