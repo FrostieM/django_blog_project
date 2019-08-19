@@ -22,7 +22,7 @@ def did_it(request, username):
 
     blog = get or created
 
-    return render(request, 'user/did_it.html', {
+    return render(request, 'user/blog.html', {
         'username': username,
         'blog': blog,
         'creator': request.user.username == username,

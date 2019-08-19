@@ -16,10 +16,6 @@ a, a:hover, .logo span{
     color: #d66cb7;
 }
 
-.logo figcaption{
-    color: #7e7d7e;
-}
-
 @media screen and (max-width: 600px){
     div[class|='container']{
         height: auto;

@@ -1,0 +1,32 @@
+@import "fonts.css";
+@import "siderbar.css";
+
+*{
+    font-family: 'MyriadPro bold';
+    color: #7e7d7e;
+}
+
+.logo span{
+    color: #d66cb7;
+}
+
+.logo{
+    font-size: 38pt;
+}
+
+.icon-bg{
+    width: 40px;
+    height: 40px;
+    background-color: #7e7d7e;
+    border-radius: 50%;
+}
+
+.icon-image{
+    width: 30px;
+    height: 30px;
+    color: white;
+}
+
+nav, .icon-text{
+    font-size: 20pt;
+}
