@@ -53,12 +53,31 @@
     </div>
 
 
-    <div class="col-7" id="content" style="background-color: #ededed;">
+    <div class="col-7 m-0 p-0" id="content" style="background-color: #ededed;">
         <button type="button" id="sidebarCollapse" class="navbar-btn">
             <span></span>
             <span></span>
             <span></span>
         </button>
+
+        <div class="row w-100 p-0 m-0">
+            <h1 class="col-auto offset-1"><span>Featured </span>Videos</h1>
+            <div class="feedback col-auto ml-auto px-1 m-0">
+                <a class="btn px-1 m-0" href="#" role="button"><img src="{% static 'general/img/twitter.svg' %}" alt="twitter"></a>
+                <a class="btn px-2 m-0" href="#" role="button"><img src="{% static 'general/img/facebook.svg' %}" alt="twitter"></a>
+                <a class="btn px-2 m-0" href="#" role="button"><img src="{% static 'general/img/google.svg' %}" alt="twitter"></a>
+                <a class="btn px-2 m-0" href="#" role="button"><img src="{% static 'general/img/p.svg' %}" alt="twitter"></a>
+            </div>
+        </div>
+
+        <main class="">
+            <div id="main_video">
+                <video class="px-5" src="{% static 'general/test.mp4' %}" width="100%" height="auto" controls>
+                    You'r browser not supporting mp4 format
+                </video>
+            </div>
+        </main>
+
     </div>
 
 </div>
