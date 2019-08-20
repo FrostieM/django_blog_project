@@ -1,8 +1,9 @@
 @import "fonts.css";
 @import "siderbar.css";
+@import "buttons.css";
 
 *{
-    font-family: 'MyriadPro bold';
+    font-family: 'MyriadPro bold', sans-serif;
     color: #7e7d7e;
 }
 
@@ -14,17 +15,16 @@
     font-size: 38pt;
 }
 
-.icon-bg{
-    width: 40px;
-    height: 40px;
-    background-color: #7e7d7e;
-    border-radius: 50%;
+.about p{
+    font-size: 12pt;
 }
 
-.icon-image{
-    width: 30px;
-    height: 30px;
-    color: white;
+.about p, .about h1{
+    font-family: 'MyriadPro regular', sans-serif; !important;
+}
+
+.about h1{
+    font-size: 26pt;
 }
 
 nav, .icon-text{

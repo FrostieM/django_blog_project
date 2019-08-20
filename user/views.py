@@ -15,8 +15,7 @@ def template_redirect(request):
     }))
 
 
-def did_it(request, username):
-    # TODO get_or_404page do next time
+def blog(request, username):
     user = get_object_or_404(User, username=username)
     get, created = Blog.objects.get_or_create(user=user)
 
