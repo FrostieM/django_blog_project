@@ -34,3 +34,7 @@
 nav, .icon-text{
     font-size: 20pt;
 }
+
+.card{
+    cursor: pointer;
+}
