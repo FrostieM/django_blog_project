@@ -1,0 +1,11 @@
+{% load static %}
+{% load random %}
+<div class="image card flex-row flex-wrap col-10 offset-1 p-0 mt-5">
+
+    <div class="col-auto card-header border-0 p-0 m-0" onclick="changeImage(this)">
+        <img src="{{ src }}" class="img-fluid" alt="image name">
+    </div>
+
+    {% include 'user/card_content.html' with title=title description=description%}
+
+</div>

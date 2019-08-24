@@ -1,0 +1,19 @@
+<div class="col card-block">
+
+    <div class="card-title">
+        <h2 class="title">{{ title }}</h2>
+    </div>
+
+    <div class="m-0 p-0" {% if src %} style="border-bottom: 1px solid darkgray;"{% endif %}>
+        <div class="info ml-2">
+            {% include 'user/like_history.html' with width='12' height='12' likes='50' days_ago='1day ago' %}
+        </div>
+    </div>
+
+    <div class="card-text card-text mt-1 {{ desc_class }}">
+        <p class="description">{{ description }}</p>
+    </div>
+
+    <span class="url d-none">{{ src }}</span>
+
+</div>

@@ -1,0 +1,5 @@
+{% load static %}
+<div class="article card col-10 offset-1 text-center p-0 mt-5">
+    {% include 'user/card_content.html' with title=title  description=description desc_class="d-none" %}
+    <button type="button" class="btn btn-secondary" onclick="swapElements(this)" style="cursor: pointer">Show</button>
+</div>

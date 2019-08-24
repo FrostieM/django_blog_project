@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active col-md-0 offset-md-0');
-        $('#content').toggleClass('col-md-12');
+        $('#content').toggleClass('col-md-11');
         $(this).toggleClass('active');
     });
 
@@ -13,8 +13,18 @@ $(document).ready(function () {
 
             $('.current').removeClass('current');
             currentTag.addClass('current');
+            $.ajax({
+                type: "GET",
+                url: '/change_page',
+                data: {
+                    'page': $(this).find('.icon-text').text(),
+                },
+                success: function (data) {
+                    $('main').html(data);
+                }
+            });
 
-        })
+        });
     });
 
     $('.tag').each(function () {
@@ -29,24 +39,14 @@ $(document).ready(function () {
             $(this).addClass('active');
 
             let cards = $('.card');
-            cards.toggleClass('flex-row');
-            cards.toggleClass('flex-wrap');
+            if (cards.hasClass('video')){
+                cards.toggleClass('flex-row');
+                cards.toggleClass('flex-wrap');
+            }
+
             cards.toggleClass('col-sm-4');
         });
     });
 
-    $('.like').each(function () {
-       $(this).on('click', function () {
-           let currentTag = $(this);
-           let childTag = currentTag.find('small');
-
-           if (currentTag.hasClass('active'))
-               childTag.text(childTag.text() - 1);
-           else
-               childTag.text( Number(childTag.text()) + 1);
-
-           currentTag.toggleClass('active');
-       })
-    });
-
 });
+
