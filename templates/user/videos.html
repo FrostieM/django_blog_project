@@ -1,0 +1,40 @@
+{% load static %}
+<div id="main-content" class="px-5">
+    {% if main_post %}
+        <div class="col-auto">
+            <h2 class="title">{{ main_post.title }}</h2>
+        </div>
+
+        <div id="player" class="border"></div>
+        <div class="row w-100 mx-0 mt-2 p-0 border" style="background-color: #dedfdf;">
+
+            <div class="col-auto">
+                <p class="description">{{ main_post.description }}</p>
+            </div>
+
+            {% include 'user/like_history.html' with width='12' height='12' likes=main_post.likes days_ago=main_post.created %}
+        </div>
+        <span class="url d-none">{{ main_post.file.url }}</span>
+
+        <div class="row">
+            {% include 'user/buttons_view.html' %}
+        </div>
+
+    {% else %}
+        <p>No post yet</p>
+    {% endif %}
+
+</div>
+
+<div class="row">
+
+    {% for post in posts %}
+        {% include 'user/card.html' with card_name='video' likes=post.likes days_ago=post.created title=post.title src=post.file.url description=post.description %}
+    {% endfor %}
+
+</div>
+
+<script src="{% static 'general/js/playerjs.js' %}"></script>
+<script>
+    var player = new Playerjs({id:"player", file:"{{ main_post.file.url }}"});
+</script>
