@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 {% endblock %}
 
-{% block content %}
 
+{% block content %}
 <div class="container-fluid d-flex" style="background-color: #4f4f4f;">
 
     <div class="col-3 offset-1 px-0 mb-3" id="sidebar" style="background-color: white">
@@ -38,6 +38,7 @@
                 <img class="float-left" src="{% static 'general/img/tag.svg' %}" alt="tag picture">
                 <h1 class="ml-5">Tags</h1>
                 <div class="tags">
+                    
                     <button type="button" class="tag btn mt-2 ml-1 shadow-none text-center">Video</button>
                     <button type="button" class="tag btn mt-2 ml-1 shadow-none text-center">Video</button>
                     <button type="button" class="tag btn mt-2 ml-1 shadow-none text-center">Video</button>
@@ -71,23 +72,17 @@
         </div>
 
         <main>
-
             {% include 'user/videos/videos.html' %}
-
         </main>
 
     </div>
 
 </div>
-
-
 {% endblock %}
 
+
 {% block scripts %}
-    <script src="{% static 'general/js/playerjs.js' %}"></script>
     <script>
-        var player = new Playerjs({id:"player", file:"{% static 'general/test.mp4' %}"});
-        
         function changeVideo(item) {
             swapElements(item);
             $('video').attr('src', $('#main-content').find('.url').text());
@@ -127,13 +122,32 @@
         function likeIt(item){
             let currentTag = $(item);
             let childTag = currentTag.find('small');
+            let likes = Number(childTag.text());
 
             if (currentTag.hasClass('active'))
-               childTag.text(childTag.text() - 1);
+               childTag.text(likes - 1);
             else
-               childTag.text( Number(childTag.text()) + 1);
+               childTag.text(likes + 1);
 
             currentTag.toggleClass('active');
+        }
+
+        function changeView(item){
+            let currentView = $(item);
+            if (currentView.hasClass('active')){
+                return;
+            }
+
+            $('.view').removeClass('active');
+            currentView.addClass('active');
+
+            let cards = $('.card');
+            if (cards.hasClass('video')){
+                cards.toggleClass('flex-row');
+                cards.toggleClass('flex-wrap');
+            }
+
+            cards.toggleClass('col-sm-4');
         }
 
     </script>

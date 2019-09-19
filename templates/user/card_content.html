@@ -5,8 +5,8 @@
     </div>
 
     <div class="m-0 p-0" {% if src %} style="border-bottom: 1px solid darkgray;"{% endif %}>
-        <div class="info ml-2">
-            {% include 'user/like_history.html' with width='12' height='12' likes='50' days_ago='1day ago' %}
+        <div class="info">
+            {% include 'user/like_history.html' with width='12' height='12' likes=likes days_ago=days_ago %}
         </div>
     </div>
 

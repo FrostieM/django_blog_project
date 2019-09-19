@@ -12,11 +12,13 @@
 
         <div class="row h-100 w-100 p-0 m-0 align-content-center justify-content-center">
             <div class="row col-sm-8 col-md-6 col-lg-4  text-center text-light border border-secondary rounded-top bg-info shadow-lg">
+
                 <figure class="logo col-12 figure mt-3">
                     <img src="{% static 'general/img/logo.png' %}" class="figure-img img-fluid rounded" alt="cup_logo.png">
                     <figcaption class="figure-caption text-light"><h1 class="text-dark"><span>GA</span>LLARIA</h1></figcaption>
                 </figure>
                 <h2 class="col-12">Login</h2>
+
                 <form class="row col" method="post">
                     {{ form.username|attr:'placeholder:username'|add_class:'col-9 offset-2 mt-2 shadow-sm' }}
                     {{ form.password|attr:'placeholder:password'|add_class:'col-9 offset-2 mt-2 shadow-sm' }}
@@ -25,8 +27,8 @@
                     <p class="col-12"><small>New user? <a href="{% url 'sign_in' %}">join us</a></small></p>
                     <input name="submit" id="submit" class="col-auto offset-5 mt-2 btn btn-dark rounded-0" type="submit" value="submit">
                 </form>
-            </div>
 
+            </div>
         </div>
 
     </div>

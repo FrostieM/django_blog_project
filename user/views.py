@@ -19,7 +19,6 @@ def template_redirect(request):
 def blog(request, username):
     user = get_object_or_404(User, username=username)
     get, created = Blog.objects.get_or_create(user=user)
-
     user_blog = get or created
 
     return render(request, 'user/blog.html', {
@@ -38,4 +37,3 @@ def change_page(request):
     page = request.GET.get('page', None)
     html = render_to_string(f"user/{page}/{page}.html")
     return HttpResponse(html)
-

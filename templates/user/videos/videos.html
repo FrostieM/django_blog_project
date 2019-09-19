@@ -22,12 +22,17 @@
 
 
 <div class="row">
-    {% include 'user/videos/video_card.html' with title='Video Title' description='Video description' src='static/general/test2.mp4' %}
-    {% include 'user/videos/video_card.html' with title='Video Title' description='Video description' src='static/general/test.mp4' %}
-    {% include 'user/videos/video_card.html' with title='Video Title' description='Video description' src='static/general/test.mp4' %}
-    {% include 'user/videos/video_card.html' with title='Video Title' description='Video description' src='static/general/test2.mp4' %}
-    {% include 'user/videos/video_card.html' with title='Video Title' description='Video description' src='static/general/test.mp4' %}
-    {% include 'user/videos/video_card.html' with title='Video Title' description='Video description' src='static/general/test2.mp4' %}
-    {% include 'user/videos/video_card.html' with title='Video Title' description='Video description' src='static/general/test.mp4' %}
-    {% include 'user/videos/video_card.html' with title='Video Title' description='Video description' src='static/general/test2.mp4' %}
+    {% include 'user/card.html' with card_name='video' title='Video Title' description='Video description' src='static/general/test2.mp4' likes='999' days_ago='3 days ago'%}
+    {% include 'user/card.html' with card_name='video' title='Video Title' description='Video description' src='static/general/test.mp4' likes='20' days_ago='3 days ago'%}
+    {% include 'user/card.html' with card_name='video' title='Video Title' description='Video description' src='static/general/test.mp4' likes='10' days_ago='3 days ago'%}
+    {% include 'user/card.html' with card_name='video' title='Video Title' description='Video description' src='static/general/test2.mp4' likes='40' days_ago='3 days ago'%}
+    {% include 'user/card.html' with card_name='video' title='Video Title' description='Video description' src='static/general/test.mp4' likes='80' days_ago='3 days ago'%}
+    {% include 'user/card.html' with card_name='video' title='Video Title' description='Video description' src='static/general/test2.mp4' likes='15' days_ago='3 days ago'%}
+    {% include 'user/card.html' with card_name='video' title='Video Title' description='Video description' src='static/general/test.mp4' likes='99' days_ago='3 days ago'%}
+    {% include 'user/card.html' with card_name='video' title='Video Title' description='Video description' src='static/general/test2.mp4' likes='10' days_ago='3 days ago'%}
 </div>
+
+<script src="{% static 'general/js/playerjs.js' %}"></script>
+<script>
+    var player = new Playerjs({id:"player", file:"{% static 'general/test.mp4' %}"});
+</script>

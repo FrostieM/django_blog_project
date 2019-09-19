@@ -8,7 +8,7 @@ from . import forms
 
 def login_page(request):
     form = forms.Login()
-    if not request.user.is_authenticated and request.method == 'POST':
+    if request.method == 'POST':
         form = forms.Login(request.POST)
         if form.is_valid():
             user_login(request, form)
@@ -36,7 +36,7 @@ def sign_in_page(request):
     if request.method == 'POST':
         form = forms.SignIn(request.POST)
         if form.is_valid():
-            user = form.save()
+            form.save()
             user_login(request, form)
 
     if request.user.is_authenticated:

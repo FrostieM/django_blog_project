@@ -33,20 +33,5 @@ $(document).ready(function () {
         })
     });
 
-    $('.view').each(function () {
-        $(this).on('click', function(){
-            $('.view').removeClass('active');
-            $(this).addClass('active');
-
-            let cards = $('.card');
-            if (cards.hasClass('video')){
-                cards.toggleClass('flex-row');
-                cards.toggleClass('flex-wrap');
-            }
-
-            cards.toggleClass('col-sm-4');
-        });
-    });
-
 });
 
