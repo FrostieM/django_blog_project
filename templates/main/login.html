@@ -23,7 +23,7 @@
                     {{ form.username|attr:'placeholder:username'|add_class:'col-9 offset-2 mt-2 shadow-sm' }}
                     {{ form.password|attr:'placeholder:password'|add_class:'col-9 offset-2 mt-2 shadow-sm' }}
                     {% csrf_token %}
-
+                    
                     <p class="col-12"><small>New user? <a href="{% url 'sign_in' %}">join us</a></small></p>
                     <input name="submit" id="submit" class="col-auto offset-5 mt-2 btn btn-dark rounded-0" type="submit" value="submit">
                 </form>

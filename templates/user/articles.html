@@ -15,14 +15,20 @@
             </div>
             <span class="url d-none">{% static 'general/test.mp4' %}</span>
 
-        <div class="row">
-            {% include 'user/buttons_view.html' %}
-        </div>
     {% else %}
         <p>No post yet</p>
     {% endif %}
 
+    <div class="row">
+        {% if creator %}
+            {% include 'user/add_post_form.html' %}
+        {% endif %}
+        {% include 'user/buttons_view.html' %}
+    </div>
+
 </div>
+
+
 
 <div class="row">
 

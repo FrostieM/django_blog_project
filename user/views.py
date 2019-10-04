@@ -3,8 +3,10 @@ from django.contrib.auth import logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.template.loader import render_to_string
+from django.views.decorators.csrf import csrf_exempt
 
 from .models import *
+from .forms import get_form
 
 
 def template_redirect(request):
@@ -36,10 +38,11 @@ def user_logout(request):
 def change_page(request):
     page = request.GET.get('page', None)
     username = request.GET.get('username', None)
+    form = get_form(page[:-1], None)
+    page_type = page[:-1]
 
-    user = User.objects.get(username=username)
-    current_blog = Blog.objects.get(user=user)
-    posts = list(Post.objects.filter(blog=current_blog, type=page[:-1]).order_by('created').all())
+    current_blog = Blog.objects.get(user__username=username)
+    posts = list(Post.objects.filter(blog=current_blog, type=page_type).order_by('created').all())
 
     for post in posts:
         post.likes = PostLike.objects.filter(post=post).count()
@@ -47,5 +50,20 @@ def change_page(request):
     html = render_to_string(f"user/{page}.html", {
         'main_post': posts.pop() if posts else None,
         'posts': posts,
+        'form': form,
+        'type': page_type,
+        'creator': request.user.username == username,
     })
     return HttpResponse(html)
+
+
+@csrf_exempt
+def add_post(request, page):
+    if request.method == 'POST':
+        form = get_form(page, request.user, request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+
+    return HttpResponseRedirect(reverse('username', kwargs={
+        'username': request.user.username
+    }))

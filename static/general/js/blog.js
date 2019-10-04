@@ -1,6 +1,12 @@
 $(document).ready(function () {
     let baseUrl = window.location.href;
 
+    $.ajaxSetup({
+        data: {
+            csrfmiddlewaretoken: '{{ csrf_token }}'
+        },
+    });
+
     window.addEventListener("popstate", function(e) {
         window.location.href = location.href;
     });
@@ -38,8 +44,8 @@ function getPage(page, baseUrl){
         type: "GET",
         url: '/change_page',
         data: {
-            'username': window.location.href.match(/\/\.([a-zA-Z0-9]+)\/?/)[1],
-            'page': page,
+            username: window.location.href.match(/\/\.([a-zA-Z0-9]+)\/?/)[1],
+            page: page,
         },
         success: function (data) {
             $('main').html(data);
