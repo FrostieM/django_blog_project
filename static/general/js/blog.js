@@ -1,15 +1,4 @@
 $(document).ready(function () {
-    let baseUrl = window.location.href;
-
-    $.ajaxSetup({
-        data: {
-            csrfmiddlewaretoken: '{{ csrf_token }}'
-        },
-    });
-
-    window.addEventListener("popstate", function(e) {
-        window.location.href = location.href;
-    });
 
     $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active col-md-0 offset-md-0');
@@ -25,8 +14,7 @@ $(document).ready(function () {
 
             $('.current').removeClass('current');
             currentTag.addClass('current');
-            let pageRedirect = $(this).find('.icon-text').text();
-            $.ajax(getPage(pageRedirect, baseUrl));
+            $.ajax( getPage() );
         });
     });
 
@@ -36,20 +24,45 @@ $(document).ready(function () {
         })
     });
 
-    $.ajax(getPage("videos", baseUrl));
+    $.ajax( getPage() );
 });
 
-function getPage(page, baseUrl){
+function getPage(){
+    let page = $('.current').find('.icon-text').html();
+
+    let url = window.location.href.split('/');
+    let baseUrl = url.shift() + '//' + url.shift() + url.shift();
+    let username = url.shift().replace('.', '');
+
     return {
         type: "GET",
         url: '/change_page',
         data: {
-            username: window.location.href.match(/\/\.([a-zA-Z0-9]+)\/?/)[1],
+            username: username,
             page: page,
         },
         success: function (data) {
             $('main').html(data);
-            window.history.pushState("", "", baseUrl + "/" + page )
+            window.history.pushState("", "", baseUrl + "/." + username + "/" + page )
         }
     }
 }
+
+function deletePost(item) {
+    let currentPost = $(item);
+    let postId = currentPost.find('.post').html();
+
+    $.ajax({
+        type: 'GET',
+        url: '/delete_post',
+        data: {
+            postId: postId,
+        },
+        success: function (data) {
+            $.ajax( getPage() );
+        }
+    })
+}
+
+
+

@@ -13,4 +13,12 @@
         </svg>
         <span><small>{{ days_ago|naturaltime }}</small></span>
     </div>
+
+    {% if creator %}
+    <button type="button" class="btn col-auto text-right mx-1 p-0 shadow-none" onclick="deletePost(this)">
+        <span class="post d-none">{{ id }}</span>
+        <span><small style="color: #B80F0A">Delete</small></span>
+    </button>
+    {% endif %}
+
 </div>

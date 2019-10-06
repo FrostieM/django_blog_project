@@ -23,7 +23,7 @@
     </div>
     {% endif %}
 
-    {% include 'user/card_content.html' with title=title description=description src=src likes=likes days_ago=days_ago desc_class=desc_class%}
+    {% include 'user/card_content.html' with id=id title=title description=description src=src likes=likes days_ago=days_ago desc_class=desc_class%}
     {% if card_name == 'article' %}
     <button type="button" class="btn btn-secondary" onclick="swapElements(this)" style="cursor: pointer">Show</button>
     {% endif %}

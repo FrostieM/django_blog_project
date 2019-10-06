@@ -11,9 +11,10 @@
                     <p class="description">{{ main_post.description }}</p>
                 </div>
 
-                {% include 'user/like_history.html' with width='12' height='12' likes=main_post.likes days_ago=main_post.created %}
+                {% include 'user/like_history.html' with id=main_post.id width='12' height='12' likes=main_post.likes days_ago=main_post.created %}
             </div>
-            <span class="url d-none">{% static 'general/test.mp4' %}</span>
+
+
 
     {% else %}
         <p>No post yet</p>
@@ -33,7 +34,7 @@
 <div class="row">
 
     {% for post in posts %}
-        {% include 'user/card.html' with card_name='article' desc_class='d-none' likes=post.likes days_ago=post.created title=post.title description=post.description %}
+        {% include 'user/card.html' with id=post.id card_name='article' desc_class='d-none' likes=post.likes days_ago=post.created title=post.title description=post.description %}
     {% endfor %}
 
 </div>

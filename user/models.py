@@ -1,3 +1,5 @@
+import os
+
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -13,8 +15,9 @@ class Comment(models.Model):
 
 
 def upload_to_user_folder(instance, filename):
-    src = instance.type or 'image'
-    return f"{instance.blog.user.username}/{src}/{filename}"
+    file_type = instance.type
+    username = instance.blog.user.username
+    return f"{username}/{file_type}/{filename}"
 
 
 class Blog(models.Model):
@@ -31,6 +34,12 @@ class Post(models.Model):
     file = models.FileField(upload_to=upload_to_user_folder, null=True, blank=True)
     tags = models.ManyToManyField(Tag)
     created = models.DateTimeField(auto_now_add=True)
+
+    def delete(self, *args, **kwargs):
+        if self.file:
+            os.remove(self.file.path)
+
+        super().delete(*args, **kwargs)
 
 
 class PostLike(models.Model):

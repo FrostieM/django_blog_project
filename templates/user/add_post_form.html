@@ -1,36 +1,63 @@
 <div class="col-4 mt-2">
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modelId">
-        add {{ type }}
+        Add {{ type }}
     </button>
 
     <!-- Modal -->
-    <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">add {{ type }}</h5>
+                    <h5 class="modal-title">Add {{ type }}</h5>
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid">
                         <form id="addPostForm" enctype="multipart/form-data" action="{% url 'add_post' type %}" method="post">
-                            {{ form }}
                             {% csrf_token %}
+                            {{ form }}
                         </form>
+                        <div id="errors" style="color: red"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" form="addPostForm">Save</button>
+                    <button id="close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="submit" type="submit" class="btn btn-primary" form="addPostForm">Save</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        $('#exampleModal').on('show.bs.modal', event => {
-            let button = $(event.relatedTarget);
-            let modal = $(this);
+        $("#addPostForm").submit(function(e) {
+            e.preventDefault();
+
+            let form = $(this);
+            let formData = new FormData(this);
+            let url = form.attr("action");
+            let methodType = form.attr("method");
+
+            $.ajax({
+                type: methodType,
+                url: url,
+                data: formData,
+                mimeType: "multipart/form-data",
+                contentType: false,
+                cache: false,
+                processData: false,
+
+                success: function(data)
+                {
+                    $('#close').click();
+                    let url = window.location.href.split('/');
+                    let page = url.pop();
+                    let baseUrl = url.join("/");
+                    $.ajax( getPage() );
+                },
+                error: function (data) {
+                    $('#errors').html(data.responseText);
+                }
+            });
         });
     </script>
 </div>

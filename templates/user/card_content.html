@@ -6,7 +6,7 @@
 
     <div class="m-0 p-0" {% if src %} style="border-bottom: 1px solid darkgray;"{% endif %}>
         <div class="info">
-            {% include 'user/like_history.html' with width='12' height='12' likes=likes days_ago=days_ago %}
+            {% include 'user/like_history.html' with id=id width='12' height='12' likes=likes days_ago=days_ago %}
         </div>
     </div>
 
@@ -15,5 +15,6 @@
     </div>
 
     <span class="url d-none">{{ src }}</span>
+
 
 </div>
